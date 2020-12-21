@@ -82,7 +82,8 @@
 	 */
 	function initApp() {
 		console.log('in initApp')
-		if ('current user: ' + firebase.auth().currentUser) {
+		console.log('current user: ' + firebase.auth().currentUser) {
+		if (firebase.auth().currentUser) {
 			window.open('pmo.html', '_self');
 			return;
 		}
