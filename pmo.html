@@ -1,8 +1,10 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="pt">
 
 <head>
 	<title>MNE-PMO</title>
+
+	<meta charset="UTF-8">
 
 	<link type="image/ico" rel="shortcut icon" href="img/favicon.ico">
 	<link type="text/css" rel="stylesheet"
@@ -15,9 +17,79 @@
 	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
 <script type="text/javascript" src="config/firebase.js"></script>
 
+<script type="text/javascript">
+	firebase.initializeApp(firebaseConfig);
+	firebase.analytics();
+	var ui = new firebaseui.auth.AuthUI(firebase.auth());
+</script>
+
+<script type="text/javascript">
+	/**
+	 * Displays the UI for a signed in user.
+	 * @param {!firebase.User} user
+	 */
+	var handleSignedInUser = function (user) {
+		document.getElementById('user-id').style.display = 'block';
+		document.getElementById('user-id').textContent = user.displayName;
+		if (user.photoURL) {
+			var photoURL = user.photoURL;
+			if ((photoURL.indexOf('googleusercontent.com') != -1) ||
+				(photoURL.indexOf('ggpht.com') != -1)) {
+				photoURL = photoURL + '?sz=' + '40';
+			}
+			document.getElementById('photo').src = photoURL;
+			document.getElementById('photo').style.display = 'block';
+		} else {
+			document.getElementById('photo').style.display = 'none';
+			document.getElementById('user-id').style.display = 'none';
+		}
+		if (user) {
+			console.log(user);
+		}
+	};
+
+
+	/**
+	 * Displays the UI for a signed out user.
+	 */
+	var handleSignedOutUser = function () {
+		console.log('in handleSignedOutUser');
+		document.getElementById('photo').style.display = 'none';
+		document.getElementById('user-id').style.display = 'none';
+	};
+
+	var logout = function() {
+		firebase.auth().signOut()
+		.then(function() {
+			handleSignedOutUser();
+		});
+	}
+
+	/**
+	 * Listen to change in auth state so it displays the correct UI for when
+	 * the user is signed in or not.
+	 */
+	function initApp() {
+		console.log('in initApp')
+		firebase.auth().onAuthStateChanged(function (user) {
+			console.log('in onAuthStateChanged');
+			console.log('user: ' + user);
+			user ? handleSignedInUser(user) : handleSignedOutUser();
+		}, function (error) {
+			console.log('onAuthStateChanged error');
+			console.log(error);
+		});
+	};
+
+	$(document).ready(() => initApp());
+	
+</script>
+
 <body>
+
 	<div id="top_menu">
 		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 			<a class="navbar-brand" href="#">MNE PMO</a>
@@ -28,19 +100,20 @@
 			</ul>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
-					<img id="photo" class="nav-link hidden" src="#">
+					<img id="photo" class="nav-link rounded-circle" src="#">
 				</li>
 				<li class="nav-item">
-					<a id="user-id" class="nav-link hidden" href="#"></a>
-				</li>
-				<li class="nav-item">
-					<a id="user-in" class="nav-link hidden" onclick="firebase.auth().signOut().then(function() {
-						handleSignedOutUser();
-					})">Logout</a>
+					<div class="dropdown">
+						<a id="user-id" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"></a>
+						<div class="dropdown-menu">
+							<a href="#" class="dropdown-item" onclick="logout()">Logout</a>
+						</div>
+					</div>
 				</li>
 			</ul>
 		</nav>
 	</div>
+
 	<div id="Payload area">
 		<h1 class="centered">HELLO PMO</h1>
 	</div>
