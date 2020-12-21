@@ -121,16 +121,23 @@
 			</ul>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
-					<img id="photo" class="nav-link" src="#">
+					<img id="photo" class="nav-link rounded-circle" src="#">
 				</li>
 				<li class="nav-item">
-					<a id="user-id" class="nav-link" href="#"></a>
+					<a id="user-id" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"></a>
+					<div class="dropdown-menu">
+						<a href="#" class="dropdown-item" onclick="firebase.auth().signOut().then(function() {
+							handleSignedOutUser();
+						})">Logout</a>
+					</div>
 				</li>
+<!-- 
 				<li class="nav-item">
 					<a id="user-in" class="nav-link" onclick="firebase.auth().signOut().then(function() {
 						handleSignedOutUser();
 					})">Logout</a>
 				</li>
+ -->
 			</ul>
 		</nav>
 	</div>
