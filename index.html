@@ -31,10 +31,7 @@
 </script>
 
 <script type="text/javascript">
-	/**
-	 * Displays the UI for a signed in user.
-	 * @param {!firebase.User} user
-	 */
+
 	var handleSignedInUser = function (user) {
 		console.log('in handleSignedInUser');
 		document.getElementById('gantts').style.display = 'block';
@@ -58,10 +55,6 @@
 		}
 	};
 
-
-	/**
-	 * Displays the UI for a signed out user.
-	 */
 	var handleSignedOutUser = function () {
 		console.log('in handleSignedOutUser');
 		document.getElementById('gantts').style.display = 'none';
@@ -76,23 +69,10 @@
 		});
 	}
 
-	/**
-	 * Listen to change in auth state so it displays the correct UI for when
-	 * the user is signed in or not.
-	 */
 	function initApp() {
-		console.log('in initApp')
-		console.log('current user: ' + firebase.auth().currentUser) {
-		if (firebase.auth().currentUser) {
-			window.open('pmo.html', '_self');
-			return;
-		}
 		firebase.auth().onAuthStateChanged(function (user) {
-			console.log('in onAuthStateChanged');
-			console.log('user: ' + user);
 			user ? handleSignedInUser(user) : handleSignedOutUser();
 		}, function (error) {
-			console.log('onAuthStateChanged error');
 			console.log(error);
 		});
 	};

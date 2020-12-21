@@ -27,10 +27,7 @@
 </script>
 
 <script type="text/javascript">
-	/**
-	 * Displays the UI for a signed in user.
-	 * @param {!firebase.User} user
-	 */
+
 	var handleSignedInUser = function (user) {
 		document.getElementById('user-id').style.display = 'block';
 		document.getElementById('user-id').textContent = user.displayName;
@@ -51,10 +48,6 @@
 		}
 	};
 
-
-	/**
-	 * Displays the UI for a signed out user.
-	 */
 	var handleSignedOutUser = function () {
 		console.log('in handleSignedOutUser');
 		document.getElementById('photo').style.display = 'none';
@@ -69,10 +62,6 @@
 		});
 	}
 
-	/**
-	 * Listen to change in auth state so it displays the correct UI for when
-	 * the user is signed in or not.
-	 */
 	function initApp() {
 		console.log('in initApp')
 		firebase.auth().onAuthStateChanged(function (user) {
