@@ -31,7 +31,7 @@
 </script>
 
 <script type="text/javascript">
-	function display(status) {
+	function synchMenu(status) {
 		document.getElementById('gantts').style.display = status;
 		document.getElementById('user-id').style.display = status;
 		document.getElementById('photo').style.display = status;
@@ -50,12 +50,12 @@
 			} else {
 				status = 'none';
 			}
-			display(status);
+			synchMenu(status);
 		}
 	};
 
 	var handleSignedOutUser = function () {
-		display('none');
+		synchMenu('none');
 	};
 
 	var logout = function () {
@@ -74,7 +74,7 @@
 	};
 
 	$(document).ready(() => initApp());
-	
+
 </script>
 
 <body>
