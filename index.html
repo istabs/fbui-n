@@ -38,7 +38,7 @@
 	var handleSignedInUser = function (user) {
 		console.log('in handleSignedInUser');
 		document.getElementById('gantts').style.display = 'block';
-		document.getElementById('user-in').style.display = 'block';
+		//document.getElementById('user-in').style.display = 'block';
 		document.getElementById('user-id').style.display = 'block';
 		document.getElementById('user-id').textContent = user.displayName;
 		if (user.photoURL) {
@@ -57,7 +57,7 @@
 			document.getElementById('gantts').style.display = 'none';
 			document.getElementById('photo').style.display = 'none';
 			document.getElementById('user-id').style.display = 'none';
-			document.getElementById('user-in').style.display = 'none';
+			//document.getElementById('user-in').style.display = 'none';
 		}
 		if (user) {
 			console.log(user);
@@ -74,7 +74,7 @@
 		document.getElementById('gantts').style.display = 'none';
 		document.getElementById('photo').style.display = 'none';
 		document.getElementById('user-id').style.display = 'none';
-		document.getElementById('user-in').style.display = 'none';
+		//document.getElementById('user-in').style.display = 'none';
 		//ui.start('#firebaseui-auth-container', firebaseUiConfig);
 	};
 
@@ -131,11 +131,11 @@
 						})">Logout</a>
 					</div>
 				</li>
-				<li class="nav-item">
+				<!-- <li class="nav-item">
 					<a id="user-in" class="nav-link" onclick="firebase.auth().signOut().then(function() {
 						handleSignedOutUser();
 					})">Logout</a>
-				</li>
+				</li> -->
 			</ul>
 		</nav>
 	</div>
