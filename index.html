@@ -82,6 +82,7 @@
 	 */
 	function initApp() {
 		console.log('in initApp')
+		console.log('current user: ' + firebase.auth().currentUser)
 		firebase.auth().onAuthStateChanged(function (user) {
 			console.log('in onAuthStateChanged');
 			console.log('user: ' + user);
