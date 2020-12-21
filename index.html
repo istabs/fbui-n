@@ -82,7 +82,10 @@
 	 */
 	function initApp() {
 		console.log('in initApp')
-		console.log('current user: ' + firebase.auth().currentUser)
+		if ('current user: ' + firebase.auth().currentUser) {
+			window.open('pmo.html', '_self');
+			return;
+		}
 		firebase.auth().onAuthStateChanged(function (user) {
 			console.log('in onAuthStateChanged');
 			console.log('user: ' + user);
