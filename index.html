@@ -69,6 +69,13 @@
 		document.getElementById('user-id').style.display = 'none';
 	};
 
+	var logout = function() {
+		firebase.auth().signOut()
+		.then(function() {
+			handleSignedOutUser();
+		});
+	}
+
 	/**
 	 * Listen to change in auth state so it displays the correct UI for when
 	 * the user is signed in or not.
@@ -85,8 +92,7 @@
 		});
 	};
 
-	$(document).ready(()=>initApp());
-
+	$(document).ready(() => initApp());
 </script>
 
 <body>
@@ -104,11 +110,11 @@
 					<img id="photo" class="nav-link rounded-circle" src="#">
 				</li>
 				<li class="nav-item">
-					<a id="user-id" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"></a>
-					<div class="dropdown-menu">
-						<a href="#" class="dropdown-item ml-auto" onclick="firebase.auth().signOut().then(function() {
-							handleSignedOutUser();
-						})">Logout</a>
+					<div class="dropdown">
+						<a id="user-id" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"></a>
+						<div class="dropdown-menu">
+							<a href="#" class="dropdown-item" onclick="logout()">Logout</a>
+						</div>
 					</div>
 				</li>
 			</ul>
