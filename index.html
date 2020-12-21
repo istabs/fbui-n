@@ -38,18 +38,13 @@
 	var handleSignedInUser = function (user) {
 		console.log('in handleSignedInUser');
 		document.getElementById('gantts').style.display = 'block';
-		//document.getElementById('user-in').style.display = 'block';
 		document.getElementById('user-id').style.display = 'block';
 		document.getElementById('user-id').textContent = user.displayName;
 		if (user.photoURL) {
 			var photoURL = user.photoURL;
-			// Append size to the photo URL for Google hosted images to avoid requesting
-			// the image with its original resolution (using more bandwidth than needed)
-			// when it is going to be presented in smaller size.
 			if ((photoURL.indexOf('googleusercontent.com') != -1) ||
 				(photoURL.indexOf('ggpht.com') != -1)) {
 				photoURL = photoURL + '?sz=' + '40';
-				//document.getElementById('photo').clientHeight;
 			}
 			document.getElementById('photo').src = photoURL;
 			document.getElementById('photo').style.display = 'block';
@@ -57,11 +52,9 @@
 			document.getElementById('gantts').style.display = 'none';
 			document.getElementById('photo').style.display = 'none';
 			document.getElementById('user-id').style.display = 'none';
-			//document.getElementById('user-in').style.display = 'none';
 		}
 		if (user) {
 			console.log(user);
-			//ui.reset();
 		}
 	};
 
@@ -74,29 +67,13 @@
 		document.getElementById('gantts').style.display = 'none';
 		document.getElementById('photo').style.display = 'none';
 		document.getElementById('user-id').style.display = 'none';
-		//document.getElementById('user-in').style.display = 'none';
-		//ui.start('#firebaseui-auth-container', firebaseUiConfig);
 	};
 
 	/**
 	 * Listen to change in auth state so it displays the correct UI for when
 	 * the user is signed in or not.
 	 */
-	//firebase.auth().onAuthStateChanged(function (user) {
-	//	user ? handleSignedInUser(user) : handleSignedOutUser();
-	//});
-
-	/*
 	function initApp() {
-		console.log('in initApp')
-		firebase.auth().onAuthStateChanged(function (user) {
-			console.log(user);
-			user ? handleSignedInUser(user) : handleSignedOutUser();
-		}, (error) => console.log(error));
-	};
-	*/
-
-	window.addEventListener('load', (function () {
 		console.log('in initApp')
 		firebase.auth().onAuthStateChanged(function (user) {
 			console.log('in onAuthStateChanged');
@@ -106,7 +83,10 @@
 			console.log('onAuthStateChanged error');
 			console.log(error);
 		});
-	}));
+	};
+
+	window.addEventListener('load', initApp);
+
 </script>
 
 <body>
@@ -131,11 +111,6 @@
 						})">Logout</a>
 					</div>
 				</li>
-				<!-- <li class="nav-item">
-					<a id="user-in" class="nav-link" onclick="firebase.auth().signOut().then(function() {
-						handleSignedOutUser();
-					})">Logout</a>
-				</li> -->
 			</ul>
 		</nav>
 	</div>
