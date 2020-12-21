@@ -31,42 +31,38 @@
 </script>
 
 <script type="text/javascript">
+	function display(status) {
+		document.getElementById('gantts').style.display = status;
+		document.getElementById('user-id').style.display = status;
+		document.getElementById('photo').style.display = status;
+	}
 
 	var handleSignedInUser = function (user) {
-		console.log('in handleSignedInUser');
-		document.getElementById('gantts').style.display = 'block';
-		document.getElementById('user-id').style.display = 'block';
-		document.getElementById('user-id').textContent = user.displayName;
-		if (user.photoURL) {
-			var photoURL = user.photoURL;
-			if ((photoURL.indexOf('googleusercontent.com') != -1) ||
-				(photoURL.indexOf('ggpht.com') != -1)) {
-				photoURL = photoURL + '?sz=' + '40';
+		with(status = 'block') {
+			document.getElementById('user-id').textContent = user.displayName;
+			if (user.photoURL) {
+				var photoURL = user.photoURL;
+				if ((photoURL.indexOf('googleusercontent.com') != -1) ||
+					(photoURL.indexOf('ggpht.com') != -1)) {
+					photoURL = photoURL + '?sz=' + '40';
+				}
+				document.getElementById('photo').src = photoURL;
+			} else {
+				status = 'none';
 			}
-			document.getElementById('photo').src = photoURL;
-			document.getElementById('photo').style.display = 'block';
-		} else {
-			document.getElementById('gantts').style.display = 'none';
-			document.getElementById('photo').style.display = 'none';
-			document.getElementById('user-id').style.display = 'none';
-		}
-		if (user) {
-			console.log(user);
+			display(status);
 		}
 	};
 
 	var handleSignedOutUser = function () {
-		console.log('in handleSignedOutUser');
-		document.getElementById('gantts').style.display = 'none';
-		document.getElementById('photo').style.display = 'none';
-		document.getElementById('user-id').style.display = 'none';
+		display('none');
 	};
 
-	var logout = function() {
+	var logout = function () {
 		firebase.auth().signOut()
-		.then(function() {
-			handleSignedOutUser();
-		});
+			.then(function () {
+				handleSignedOutUser();
+			});
 	}
 
 	function initApp() {
@@ -78,6 +74,7 @@
 	};
 
 	$(document).ready(() => initApp());
+	
 </script>
 
 <body>
