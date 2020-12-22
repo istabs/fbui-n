@@ -38,11 +38,6 @@
 	}
 
 	var handleSignedInUser = function (user) {
-		if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
-			ui.start('#firebaseui-auth-container', firebaseUiConfig);
-		} else {
-			ui.reset();
-		}
 		with(status = 'block') {
 			document.getElementById('user-id').textContent = user.displayName;
 			if (user.photoURL) {
