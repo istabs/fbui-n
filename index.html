@@ -27,8 +27,6 @@
 	firebase.initializeApp(firebaseConfig);
 	firebase.analytics();
 	var ui = new firebaseui.auth.AuthUI(firebase.auth());
-	document.getElementById('firebaseui-auth-container').style.display = 'none';
-	ui.start('#firebaseui-auth-container', firebaseUiConfig);
 </script>
 
 <script type="text/javascript">
@@ -70,6 +68,8 @@
 	}
 
 	function initApp() {
+		document.getElementById('firebaseui-auth-container').style.display = 'none';
+		ui.start('#firebaseui-auth-container', firebaseUiConfig);
 		firebase.auth().onAuthStateChanged(function (user) {
 			user ? handleSignedInUser(user) : handleSignedOutUser();
 		}, function (error) {
