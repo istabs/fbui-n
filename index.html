@@ -27,6 +27,7 @@
 	firebase.initializeApp(firebaseConfig);
 	firebase.analytics();
 	var ui = new firebaseui.auth.AuthUI(firebase.auth());
+	document.getElementById('firebaseui-auth-container').style.display = 'none';
 	ui.start('#firebaseui-auth-container', firebaseUiConfig);
 </script>
 
@@ -108,7 +109,7 @@
 	<div id="firebaseui_area">
 		<div class="container h-100">
 			<h1 class="text-center">MNE-PMO</h1>
-			<div class="row justify-content-center align-items-center mt-3" style="display: none;">
+			<div class="row justify-content-center align-items-center mt-3">
 				<div id="firebaseui-auth-container"></div>
 			</div>
 		</div>
