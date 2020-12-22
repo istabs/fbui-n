@@ -1,5 +1,5 @@
 const firebaseUiConfig = {
-	signInSuccessUrl: 'pno.html',
+	signInSuccessUrl: 'pmo.html',
 	signInOptions: [
 		firebase.auth.GoogleAuthProvider.PROVIDER_ID,
 		//firebase.auth.FacebookAuthProvider.PROVIDER_ID,
