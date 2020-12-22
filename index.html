@@ -31,6 +31,7 @@
 </script>
 
 <script type="text/javascript">
+
 	function synchMenu(status) {
 		document.getElementById('gantts').style.display = status;
 		document.getElementById('user-id').style.display = status;
@@ -38,6 +39,7 @@
 	}
 
 	var handleSignedInUser = function (user) {
+		document.getElementById('firebaseui-auth-container').style.display = 'none';
 		with(status = 'block') {
 			document.getElementById('user-id').textContent = user.displayName;
 			if (user.photoURL) {
@@ -55,6 +57,7 @@
 	};
 
 	var handleSignedOutUser = function () {
+		document.getElementById('firebaseui-auth-container').style.display = 'block';
 		synchMenu('none');
 	};
 
