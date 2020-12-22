@@ -38,7 +38,7 @@
 	}
 
 	var handleSignedInUser = function (user) {
-		if (ui.isPendingRedirect()) {
+		if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
 			ui.start('#firebaseui-auth-container', firebaseUiConfig);
 		} else {
 			ui.reset();
