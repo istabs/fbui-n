@@ -40,7 +40,8 @@
 	var handleSignedInUser = function (user) {
 		if (ui.isPendingRedirect()) {
 			ui.start('#firebaseui-auth-container', firebaseUiConfig);
-			return;
+		} else {
+			ui.reset();
 		}
 		with(status = 'block') {
 			document.getElementById('user-id').textContent = user.displayName;
@@ -55,7 +56,6 @@
 				status = 'none';
 			}
 			synchMenu(status);
-			ui.reset();
 		}
 	};
 
