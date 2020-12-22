@@ -1,9 +1,9 @@
 const firebaseConfig = {
-	apiKey: "AIzaSyD9IJrHygkEtOv3FMAJZnHcNzGl30kND80",
-	authDomain: "fbui-n1.firebaseapp.com",
-	projectId: "fbui-n1",
-	storageBucket: "fbui-n1.appspot.com",
-	messagingSenderId: "217075709811",
-	appId: "1:217075709811:web:33e047e58badca9ad7f706",
-	measurementId: "G-PP3ND7GW5Y"
+	apiKey: "AIzaSyBCTodxv_Mogxv0rJrweAjIJdvvehMv87M",
+    authDomain: "fbui-n.firebaseapp.com",
+    projectId: "fbui-n",
+    storageBucket: "fbui-n.appspot.com",
+    messagingSenderId: "1062557295622",
+    appId: "1:1062557295622:web:36cf37ef64dc60f63f8f87",
+	measurementId: "G-02CGNWR1MP"
 };
