@@ -67,6 +67,7 @@
 	}
 
 	function initApp() {
+		firebase.auth().signOut();
 		firebase.auth().onAuthStateChanged(function (user) {
 			user ? handleSignedInUser(user) : handleSignedOutUser();
 		}, function (error) {
