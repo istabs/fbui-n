@@ -51,6 +51,7 @@
 				status = 'none';
 			}
 			synchMenu(status);
+			ui.reset();
 		}
 	};
 
@@ -62,6 +63,7 @@
 		firebase.auth().signOut()
 			.then(function () {
 				handleSignedOutUser();
+				ui.start('#firebaseui-auth-container', firebaseUiConfig);
 			});
 	}
 
