@@ -38,6 +38,10 @@
 	}
 
 	var handleSignedInUser = function (user) {
+		if (ui.isPendingRedirect()) {
+			ui.start('#firebaseui-auth-container', firebaseUiConfig);
+			return;
+		}
 		with(status = 'block') {
 			document.getElementById('user-id').textContent = user.displayName;
 			if (user.photoURL) {
@@ -76,7 +80,6 @@
 	};
 
 	$(document).ready(() => initApp());
-
 </script>
 
 <body>
